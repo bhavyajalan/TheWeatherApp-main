@@ -1,7 +1,7 @@
 getLocation();
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, () => {
+        navigator.geolocation.getCurrentPosition(showPosition, handleLocationError,() => {
             document.getElementById("body").style.filter = 'blur(0rem)';
         });
     }
@@ -12,6 +12,13 @@ function showPosition(position) {
     var longitude = position.coords.longitude;
 //     console.log(latitude + " " + longitude);
     getName(latitude, longitude)
+}
+
+function handleLocationError() {
+    alert("Location access is blocked. The website won't work as intended.");
+    var predefinedLocation = "Gurgaon"; // Predefined location
+    fetchData(predefinedLocation);
+    document.getElementById("body").style.filter = 'blur(0rem)';
 }
 async function getName(latitude, longitude) {
     var access_key = 'fc3a65fc9ebd7761b6cd0379e6cb3775'
