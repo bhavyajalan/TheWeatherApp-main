@@ -25,7 +25,7 @@ async function getName(latitude, longitude) {
     var url = `https://api.openweathermap.org/geo/1.0/reverse?lat=` + latitude + `&lon=` + longitude + `&limit=5&appid=` + access_key;
     var res = await fetch(url);
     var data = await res.json();
-    var location = data[0].name.split(" ")[0];
+    var location = data[0].name;
     fetchData(location);
     document.getElementById("body").style.filter = 'blur(0rem)';
 }
